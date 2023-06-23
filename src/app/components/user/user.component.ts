@@ -1,0 +1,50 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit {
+  loginForm!:FormGroup;    
+  constructor(private userService:UserService,private router:Router){}
+  ngOnInit(): void {
+    if(localStorage.getItem('token')){
+      this.router.navigate(['/task'])
+        
+    }
+        this.initForm()
+      }
+
+      private initForm(){
+        let email = '';
+        let password = '';
+      this.loginForm = new FormGroup({
+        'email': new FormControl(email, Validators.required),
+        'password':new FormControl(password, Validators.required),
+        
+      })
+      console.log(this.loginForm);
+      
+    }
+  onSubmit(){
+    const email = this.loginForm.value['email'];
+    const password = this.loginForm.value['password'];
+    console.log('yo',email,password);
+    this.userService.login(email,password).subscribe(res =>{
+      const token = res.token;
+        localStorage.setItem('token', token);
+        this.router.navigate(['/task'])
+      
+    },
+    err =>{
+      console.log('Error',err);
+      
+    });
+    
+
+  }
+}

@@ -1,0 +1,18 @@
+<div class="bg-light p-5 m-5 ">
+   
+    <div class="card m-5">
+      
+        <div class="card-body"> 
+          <h5 class="card-title">Title: {{task.title}}</h5> 
+          <p class="card-text">Description: {{task.desc}}</p>
+          <p class="card-text">Due Date: {{task.due_date | date }}</p>
+          Status:  <a href="#" class="btn btn-outline-success">  {{task.status}}</a>
+        </div> 
+      </div>
+        
+
+  <button type="button" class="btn btn-dark" (click)="onEditTask()">Edit Task</button>&nbsp;
+  <button type="button" class="btn btn-danger" (click)="onDeleteTask()">Delete Task</button>
+  
+</div>
+   

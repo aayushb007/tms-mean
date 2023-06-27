@@ -1,23 +1,22 @@
 <div class="bg-light d-flex mt-9 p-5 login-box"  >
     
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <p  *ngIf="err" class="text-danger">{{err}}</p>
         <h1>Sign Up </h1>
         <div class="form-group">
             <label for="exampleInputEmail1">Full Name</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="name" aria-describedby="emailHelp" placeholder="Enter name">
+            <input type="email" class="form-control" id="exampleInputEmail1" formControlName="name" aria-describedby="emailHelp" placeholder="Enter name" required>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email" required>
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password">
+          <input type="password" class="form-control" id="exampleInputPassword1" formControlName="password" placeholder="Password" required>
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        </div>
+        <br>
         <button type="submit" class="btn btn-primary">Sign Up</button>
         <small id="emailHelp" class="btn text-muted mx-2"  [routerLink]="['/login']">Click here for Sign In</small>
         

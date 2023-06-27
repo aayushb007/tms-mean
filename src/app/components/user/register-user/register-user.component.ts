@@ -9,6 +9,7 @@ import { UserService } from '../../user.service';
 })
 export class RegisterUserComponent {
       registerForm!:FormGroup;
+      err!:string;
       constructor(private userService:UserService){}
       ngOnInit(): void {
         this.initForm()
@@ -36,8 +37,9 @@ export class RegisterUserComponent {
       response => {
         console.log(response.message);
       },
-      error => {
-        console.log('Registration failed:', error);
+      errors => {
+        this.err = errors.error.error;
+        
       }
     );
     

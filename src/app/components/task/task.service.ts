@@ -8,12 +8,17 @@ import { HttpClient } from '@angular/common/http';
 export class TaskService {
   taskChanged = new Subject<Task[]>();
   taskSelected = new EventEmitter<Task>();
+  userId!:string | null;
   task!:Task[];
   constructor(private http:HttpClient) { }
   url = "http://localhost:3000/task"
-
+   
   getTasks():Observable<Task[]>{
-    return this.http.get<Task[]>(`${this.url}`).pipe(
+    this.userId = localStorage.getItem('id');
+    const user = this.userId !== null ? this.userId : '';
+    console.log(user);
+    
+    return this.http.get<Task[]>(`${this.url}/user/${user}`).pipe(
         map((response: any) => {
           this.taskChanged.next(response.slice())
           return response;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task.model';
 import { TaskService } from './task.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-task',
@@ -9,11 +10,17 @@ import { TaskService } from './task.service';
 })
 export class TaskComponent implements OnInit{
   selectedTask!: Task;
-  constructor(private taskService:TaskService){}
+  name!:string | null ;
+  constructor(private taskService:TaskService,private userService:UserService){}
   ngOnInit(): void {
     this.taskService.taskSelected.subscribe((task:Task)=>{
       this.selectedTask = task
     })
+  
+    this.name = localStorage.getItem("name")
+    console.log(this.name);
+    
+    
   }
   
 }

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 mb-3">
+    <div class="col-xs-6 mb-3">
      <!-- <app-task-create></app-task-create> -->
     
     </div> 
@@ -8,6 +8,16 @@
        > + Add</a>
       <div class="col-xs-12 bg-light p-5">
         <h1>Tasks</h1>
+        <div *ngIf="tasks.length === 0">
+          <div class="card-body"> 
+ 
+            <h5 class="card-text"></h5>
+            <p class="card-text">No Task Available</p>
+            
+          </div> 
+        </div>
+
+        
         <app-task-item
           *ngFor="let taskEl of tasks ; let i = index"
           [task]="taskEl"

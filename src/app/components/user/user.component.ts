@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  loginForm!:FormGroup;    
+  loginForm!:FormGroup;
+  er!:string;    
   constructor(private userService:UserService,private router:Router){}
   ngOnInit(): void {
     if(localStorage.getItem('token')){
@@ -36,13 +37,16 @@ export class UserComponent implements OnInit {
     console.log('yo',email,password);
     this.userService.login(email,password).subscribe(res =>{
       const token = res.token;
+      const user = res.user
         localStorage.setItem('token', token);
+        localStorage.setItem('name', user.name);
+        localStorage.setItem('id', user._id);
         this.router.navigate(['/task'])
       
     },
     err =>{
-      console.log('Error',err);
-      
+      console.log('Error',err.error);
+      this.er = err.error;
     });
     
 

@@ -1,6 +1,6 @@
 <div class="bg-light d-flex ml-9 p-5 login-box"  >
-    
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+     <p  *ngIf="er">Invalid Username Or Password</p>
         <h1>Sign In</h1>
         <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
@@ -18,6 +18,4 @@
         <button type="submit" class="btn btn-primary">Login</button>
         <small id="emailHelp" class="btn text-muted mx-2 "  [routerLink]="['/register']">Click here for Sign Up</small>
       </form>
-
-
 </div>

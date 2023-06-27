@@ -10,10 +10,25 @@ import { Router } from '@angular/router';
 export class UserService {
   url = "http://localhost:3000/user"
   private jwtHelper = new JwtHelperService();
-  constructor(private http: HttpClient,private router:Router) { }
+  constructor(private http: HttpClient,private router:Router,jwtHelper: JwtHelperService) { }
   
   public getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  public getId() {
+    if(localStorage.getItem('token')){
+      const token = this.getToken();
+      if (token) {
+        const decodedToken = this.jwtHelper.decodeToken(token);
+      const userId = decodedToken.user_id;
+      console.log(userId);
+      return userId;
+      }
+      
+    }
+  
+
   }
 
   public isAuthenticated(): boolean {
@@ -23,6 +38,8 @@ export class UserService {
   
   public logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('id');
     this.router.navigate(['/login'])
 
   }

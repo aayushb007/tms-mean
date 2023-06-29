@@ -25,18 +25,7 @@
       
     </ul>
     <div *ngIf="authService.isAuthenticated()">
-    <form class=" input-group w-auto ">
-      <input
-        type="search"
-        class="form-control rounded"
-        placeholder="Search"
-        aria-label="Search"
-        aria-describedby="search-addon"
-      />
-      <span class="input-group-text border-0" id="search-addon">
-        <a class="btn btn-primary" >Search</a>
-      </span>
-    </form>
+<app-task-search></app-task-search>
   </div>
   </div>
 </nav>

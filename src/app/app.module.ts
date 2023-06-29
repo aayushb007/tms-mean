@@ -14,6 +14,7 @@ import { TaskDetailsComponent } from './components/task/task-details/task-detail
 import { TaskItemComponent } from './components/task/task-list/task-item/task-item.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserService } from './components/user.service';
+import { TaskSearchComponent } from './components/task/task-search/task-search.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { UserService } from './components/user.service';
     TaskEditComponent,
     TaskListComponent,
     TaskDetailsComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    TaskSearchComponent
   ],
   imports: [
     BrowserModule,

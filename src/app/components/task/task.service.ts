@@ -61,7 +61,12 @@ export class TaskService {
 
   searchTask(query:string){
     return this.http
-    .delete(`${this.url}/search?q=${query}`);
+    .get(`${this.url}/search?q=${query}`).pipe(
+      map((response: any) => {
+        this.taskChanged.next(response.slice())
+        return response;
+      })
+    );
   }
 
 }

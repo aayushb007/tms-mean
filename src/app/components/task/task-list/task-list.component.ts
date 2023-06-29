@@ -16,6 +16,11 @@ export class TaskListComponent implements OnInit {
       console.log('Latest Data', res);
       this.tasks = res
       
+     },
+     err =>{
+      console.log(err
+        );
+      
      })
      this.taskService.getTasks().subscribe(
       task =>{

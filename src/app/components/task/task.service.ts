@@ -59,4 +59,9 @@ export class TaskService {
     .delete(`${this.url}/${_id}`);
   }
 
+  searchTask(query:string){
+    return this.http
+    .delete(`${this.url}/search?q=${query}`);
+  }
+
 }

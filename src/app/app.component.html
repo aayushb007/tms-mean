@@ -21,7 +21,23 @@
         <a *ngIf="!authService.isAuthenticated()" class="nav-link"  [routerLink]="['/register']">Register</a>
       </li>
       
+    
+      
     </ul>
+    <div *ngIf="authService.isAuthenticated()">
+    <form class=" input-group w-auto ">
+      <input
+        type="search"
+        class="form-control rounded"
+        placeholder="Search"
+        aria-label="Search"
+        aria-describedby="search-addon"
+      />
+      <span class="input-group-text border-0" id="search-addon">
+        <a class="btn btn-primary" >Search</a>
+      </span>
+    </form>
+  </div>
   </div>
 </nav>
 

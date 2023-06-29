@@ -8,7 +8,13 @@
        > + Add</a>
       <div class="col-xs-12 bg-light p-5">
         <h1>Tasks</h1>
-        <div *ngIf="tasks.length === 0">
+        <app-task-item
+          *ngFor="let taskEl of tasks ; let i = index"
+          [task]="taskEl"
+          [index]="i"
+        ></app-task-item>
+
+        <div *ngIf="!tasks.length">
           <div class="card-body"> 
  
             <h5 class="card-text"></h5>
@@ -16,13 +22,6 @@
             
           </div> 
         </div>
-
-        
-        <app-task-item
-          *ngFor="let taskEl of tasks ; let i = index"
-          [task]="taskEl"
-          [index]="i"
-        ></app-task-item>
       </div>
     </div>
   </div>

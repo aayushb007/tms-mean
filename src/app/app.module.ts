@@ -7,7 +7,6 @@ import { UserComponent } from './components/user/user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterUserComponent } from './components/user/register-user/register-user.component';
 import { TaskComponent } from './components/task/task.component';
-import { TaskDeleteComponent } from './components/task/task-delete/task-delete.component';
 import { TaskCreateComponent } from './components/task/task-create/task-create.component';
 import { TaskEditComponent } from './components/task/task-edit/task-edit.component';
 import { TaskListComponent } from './components/task/task-list/task-list.component';
@@ -22,7 +21,6 @@ import { UserService } from './components/user.service';
     UserComponent,
     RegisterUserComponent,
     TaskComponent,
-    TaskDeleteComponent,
     TaskCreateComponent,
     TaskEditComponent,
     TaskListComponent,

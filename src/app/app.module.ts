@@ -22,6 +22,9 @@ import { AllTaskComponent } from './components/report/all-task/all-task.componen
 import { BugComponent } from './components/report/bug/bug.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { CreateFeatureComponent } from './components/report/feature/create-feature/create-feature.component';
+import { CreateTaskComponent } from './components/report/feature/create-task/create-task.component';
+import { CreateSubTaskComponent } from './components/report/feature/create-sub-task/create-sub-task.component';
+import { CreateDependentTaskComponent } from './components/report/feature/create-dependent-task/create-dependent-task.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { CreateFeatureComponent } from './components/report/feature/create-featu
     AllTaskComponent,
     BugComponent,
     CreateFeatureComponent,
+    CreateTaskComponent,
+    CreateSubTaskComponent,
+    CreateDependentTaskComponent,
    
   ],
   imports: [

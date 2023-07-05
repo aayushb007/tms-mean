@@ -11,6 +11,9 @@ import { FeatureComponent } from './components/report/feature/feature.component'
 import { AllTaskComponent } from './components/report/all-task/all-task.component';
 import { BugComponent } from './components/report/bug/bug.component';
 import { CreateFeatureComponent } from './components/report/feature/create-feature/create-feature.component';
+import { CreateTaskComponent } from './components/report/feature/create-task/create-task.component';
+import { CreateSubTaskComponent } from './components/report/feature/create-sub-task/create-sub-task.component';
+import { CreateDependentTaskComponent } from './components/report/feature/create-dependent-task/create-dependent-task.component';
 
 const routes: Routes = [
   { path: 'login',component: UserComponent},
@@ -23,7 +26,10 @@ const routes: Routes = [
       {path:':taskId/edit',component : TaskEditComponent, canActivate: [AuthGuard] }
     ]
   },
-  {path:'new',component: TaskCreateComponent,canActivate: [AuthGuard] },
+  {path:'new',component: CreateTaskComponent,canActivate: [AuthGuard] },
+  {path:'new-sub',component: CreateSubTaskComponent,canActivate: [AuthGuard] },
+  {path:'new-dep',component: CreateDependentTaskComponent,canActivate: [AuthGuard] },
+   
   {path:'new-feature',component: CreateFeatureComponent,canActivate: [AuthGuard] },
   {path:"feature",component:FeatureComponent ,canActivate: [AuthGuard]},
   {path:"all-tasks",component:AllTaskComponent ,canActivate: [AuthGuard]},

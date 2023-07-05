@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Task } from '../task.model';
+
 import { TaskService } from '../task.service';
 import { Router } from '@angular/router';
+import { Task } from '../../report/tasks.model';
+import { TasksService } from '../tasks.service';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -9,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class TaskListComponent implements OnInit {
    tasks!:Task[];
-   constructor( private taskService:TaskService,private router:Router){}
+   constructor( private taskService:TasksService,private router:Router){}
 
    ngOnInit():void {
-     this.taskService.taskChanged.subscribe(res =>{
-      console.log('Latest Data', res);
-      this.tasks = res
+     this.taskService.taskChanged.subscribe(task =>{
+      console.log('Latest Data', task);
+      this.tasks = Array.isArray(task) ? task : [task];
       
      },
      err =>{

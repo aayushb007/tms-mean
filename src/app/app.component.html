@@ -17,21 +17,21 @@
           <a  *ngIf="authService.isAuthenticated()" class="dropdown-item" [routerLink]="['/feature']">My Feature</a>
         </div>
       </li>
-      <!-- <li class="nav-item ">
-        <a   *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/task']">My Tasks</a>
-      </li>
-      <li class="nav-item ">
-        <a   *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/feature']">My Feature</a>
-      </li>
-      <li class="nav-item ">
-        <a   *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/bug']">My Bug</a>
-      </li> -->
+      
       <li class="nav-item">
         <a *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/new-feature']" >Create Feature</a>
       </li>
-      <li class="nav-item">
-        <a *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/new']" >Create Task</a>
+   
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="reportDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Create Tasks</a>
+        <div class="dropdown-menu" aria-labelledby="reportDropdown">
+          <a *ngIf="authService.isAuthenticated()" class="dropdown-item" [routerLink]="['/new']">Create Task</a>
+          <a *ngIf="authService.isAuthenticated()" class="dropdown-item" [routerLink]="['/new-sub']">Create Sub-Task</a>
+          <a  *ngIf="authService.isAuthenticated()" class="dropdown-item" [routerLink]="['/new-dep']">Create Dependent-Task</a>
+        </div>
       </li>
+      
       <li>
         <a *ngIf="authService.isAuthenticated()" class="nav-link"  (click)="logout()">Logout</a>
       </li>

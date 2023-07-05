@@ -8,7 +8,9 @@ import { Task } from './tasks.model';
 })
 export class ReportService {
   private apiFeat = 'http://localhost:3000/features'; 
-  private apiTask = 'http://localhost:3000/tasks'
+  private apiTask = 'http://localhost:3000/tasks';
+  private apiDeTask = 'http://localhost:3000/dependent-tasks';
+  private apiSTask = 'http://localhost:3000/sub-tasks';
   constructor(private http: HttpClient) { }
 
   getFeature(): Observable<Feature> {
@@ -21,6 +23,26 @@ export class ReportService {
 
   getBug(): Observable<Task> {
     return this.http.get<Task>(`${this.apiTask}/bug/1`); 
+  }
+
+  setTask(task:any){
+    console.log(task);
+    
+    return this.http
+    .post(`${this.apiTask}`, task);
+    
+  }
+
+  addDependentTask(task:any){
+    console.log(task);
+    return this.http.post(`${this.apiDeTask}`,task);
+    
+  }
+
+  addSubTask(task:any){
+    console.log(task);
+    return this.http.post(`${this.apiSTask}`,task);
+    
   }
 
   addFeature(feature:Feature){

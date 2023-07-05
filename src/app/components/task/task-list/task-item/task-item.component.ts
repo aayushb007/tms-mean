@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Task } from '../../task.model';
+import { Task } from '../../../report/tasks.model';
 
 @Component({
   selector: 'app-task-item',
@@ -16,7 +16,7 @@ export class TaskItemComponent implements OnInit {
       return 'btn btn-outline-dark';
     } else if (this.task.status === 'On Hold') {
       return 'btn btn-outline-secondary';
-    } else if (this.task.status === 'Complete') {
+    } else if (this.task.status === 'Completed') {
       return 'btn btn-outline-primary';
     } else if (this.task.status === 'Overdue') {
       return 'btn btn-outline-danger';

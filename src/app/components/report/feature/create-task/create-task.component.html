@@ -1,0 +1,61 @@
+<div class="row bg-light m-5 p-5">
+    <h1>Create Task</h1>
+<form [formGroup]="featureForm" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-md-6">
+    <div class="form-group">
+      <label for="taskType">Task Type:</label>
+      <select id="taskType" class="form-control" formControlName="taskType" required>
+        <option value="">Select Status</option>
+        <option value="Task">Task</option>
+        <option value="Bug">Bug</option>
+       
+      </select>
+      <!-- <input type="text" id="taskType" class="form-control" formControlName="taskType" required> -->
+    </div>
+  
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" class="form-control" formControlName="title" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="desc">Description:</label>
+      <textarea id="desc" class="form-control" formControlName="desc" required></textarea>
+    </div>
+  
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select id="status" class="form-control" formControlName="status" required>
+        <option value="">Select Status</option>
+        <option value="Pending">Pending</option>
+        <option value="Inprogress">In Progress</option>
+        <option value="Testing">Testing</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+      <label for="startDate">Start Date:</label>
+      <input type="date" id="startDate" class="form-control" formControlName="startDate" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="dueDate">Due Date:</label>
+      <input type="date" id="dueDate" class="form-control" formControlName="dueDate" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="feature_id">Feature ID:</label>
+      <select id="feature_id" class="form-control" formControlName="feature_id" required>
+        <option value="">Select Feature ID</option>
+        <option *ngFor="let feature of features" [value]="feature.id">{{ feature.title }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-12 mt-3">
+    <button type="submit" class="btn btn-primary">Submit</button>
+</div>  
+</form>
+  
+</div>

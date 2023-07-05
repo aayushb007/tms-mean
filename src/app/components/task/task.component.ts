@@ -15,6 +15,8 @@ export class TaskComponent implements OnInit{
   ngOnInit(): void {
     this.taskService.taskSelected.subscribe((task:Task)=>{
       this.selectedTask = task
+      console.log("Selected Task",task);
+      
     })
   
     this.name = localStorage.getItem("name")

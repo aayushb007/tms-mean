@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  url = "http://localhost:3000/user"
+  url = "http://localhost:3000/users"
   private jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient,private router:Router,jwtHelper: JwtHelperService) { }
   
@@ -71,5 +71,10 @@ export class UserService {
     //     console.error('Login failed:', error);
     //       }
     // );
+  }
+
+  getUsers():Observable<any>{
+
+    return this.http.get(`${this.url}`);
   }
 }

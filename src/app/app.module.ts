@@ -15,6 +15,13 @@ import { TaskItemComponent } from './components/task/task-list/task-item/task-it
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserService } from './components/user.service';
 import { TaskSearchComponent } from './components/task/task-search/task-search.component';
+import { ReportComponent } from './components/report/report.component';
+import { FeatureComponent } from './components/report/feature/feature.component';
+import { FeatureItemComponent } from './components/report/feature/feature-item/feature-item.component';
+import { AllTaskComponent } from './components/report/all-task/all-task.component';
+import { BugComponent } from './components/report/bug/bug.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { CreateFeatureComponent } from './components/report/feature/create-feature/create-feature.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,14 @@ import { TaskSearchComponent } from './components/task/task-search/task-search.c
     TaskListComponent,
     TaskDetailsComponent,
     TaskItemComponent,
-    TaskSearchComponent
+    TaskSearchComponent,
+    ReportComponent,
+    FeatureComponent,
+    FeatureItemComponent,
+    AllTaskComponent,
+    BugComponent,
+    CreateFeatureComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -35,6 +49,7 @@ import { TaskSearchComponent } from './components/task/task-search/task-search.c
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PaginationModule.forRoot(),
     JwtModule.forRoot({
       config :{
         tokenGetter: ()=>{

@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./task-details.component.css']
 })
 export class TaskDetailsComponent implements OnInit {
-  taskId!: string;
+  taskId!: number;
   task!: Task;
   id!: number;
 
@@ -20,7 +20,8 @@ export class TaskDetailsComponent implements OnInit {
       (params: Params) => {
 
         this.taskId = params['taskId'];
-
+        console.log(this.taskId);
+        
         this.taskService.getTaskDetail(this.taskId).subscribe(task => {
           this.task = task;
           console.log(task);

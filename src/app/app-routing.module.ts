@@ -7,6 +7,10 @@ import { TaskDetailsComponent } from './components/task/task-details/task-detail
 import { TaskCreateComponent } from './components/task/task-create/task-create.component';
 import { TaskEditComponent } from './components/task/task-edit/task-edit.component';
 import { AuthGuard } from './components/user/auth.guard';
+import { FeatureComponent } from './components/report/feature/feature.component';
+import { AllTaskComponent } from './components/report/all-task/all-task.component';
+import { BugComponent } from './components/report/bug/bug.component';
+import { CreateFeatureComponent } from './components/report/feature/create-feature/create-feature.component';
 
 const routes: Routes = [
   { path: 'login',component: UserComponent},
@@ -20,7 +24,12 @@ const routes: Routes = [
     ]
   },
   {path:'new',component: TaskCreateComponent,canActivate: [AuthGuard] },
+  {path:'new-feature',component: CreateFeatureComponent,canActivate: [AuthGuard] },
+  {path:"feature",component:FeatureComponent ,canActivate: [AuthGuard]},
+  {path:"all-tasks",component:AllTaskComponent ,canActivate: [AuthGuard]},
+  {path:"bug",component:BugComponent ,canActivate: [AuthGuard]},
 
+  
 ];
 
 @NgModule({

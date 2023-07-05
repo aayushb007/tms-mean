@@ -1,0 +1,59 @@
+<div class="row bg-light m-5 p-5">
+    <h1>Create Feature</h1>
+<form [formGroup]="featureForm" (ngSubmit)="onSubmit()" class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title" required maxlength="100" class="form-control">
+        
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" required minlength="200" class="form-control"></textarea>
+        
+      </div>
+  
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select id="status" formControlName="status" required class="form-control">
+          <option value="Pending">Pending</option>
+          <option value="Inprogress">In Progress</option>
+          <option value="Testing">Testing</option>
+          <option value="Completed">Completed</option>
+        </select>
+        
+      </div>
+    </div>
+  
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="assignedTo">Assigned To:</label>
+        <select id="assignedTo" formControlName="assignedUserId" required multiple class="form-control">
+            <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+  
+            <!-- <option [value]="1">User 1</option>
+            <option [value]="2">User 2</option>
+            <option [value]="3">User 3</option> -->
+            
+          </select>
+        
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" formControlName="startDate" required class="form-control">
+              </div>
+  
+      <div class="form-group">
+        <label for="dueDate">Due Date:</label>
+        <input type="date" id="dueDate" formControlName="dueDate" required class="form-control">
+      
+      </div>
+    </div>
+  
+    <div class="col-12 mt-3">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div> 

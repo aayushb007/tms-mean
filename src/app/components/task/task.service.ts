@@ -11,10 +11,12 @@ export class TaskService {
   userId!:string | null;
   task!:Task[];
   constructor(private http:HttpClient) { }
-  url = "http://localhost:3000/task"
+  url = "http://localhost:3000/tasks"
    
   getTasks():Observable<Task[]>{
     this.userId = localStorage.getItem('id');
+    console.log(this.userId);
+    
     const user = this.userId !== null ? this.userId : '';
     console.log(user);
     
@@ -28,8 +30,11 @@ export class TaskService {
 }
 
 
-   getTaskDetail(id:string):Observable<Task>{
+
+
+   getTaskDetail(id:number):Observable<Task>{
     console.log("Hello this is Get User",id);
+    console.log('id',id);
     
     return this.http.get<Task>(`${this.url}/${id}`).pipe(
         map((response: any) => {
@@ -44,7 +49,7 @@ export class TaskService {
     .post(`${this.url}`, task); 
     
   }
-  updateTask(_id: string, newTask: Task){
+  updateTask(_id: number, newTask: Task){
     return this.http
     .put(`${this.url}/${_id}`, newTask);
     // .subscribe((response) => {
@@ -54,7 +59,7 @@ export class TaskService {
    
   }
 
-  deleteTask(_id: string){
+  deleteTask(_id: number){
     return this.http
     .delete(`${this.url}/${_id}`);
   }

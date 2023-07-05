@@ -14,7 +14,7 @@ export class TaskEditComponent implements OnInit {
   id!: number;
   userId!:string | null  ;
 
-  taskId!: string;
+  taskId!: number;
   task!: Task;
   due_date!:any;
   editForm!: FormGroup;

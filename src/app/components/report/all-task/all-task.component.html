@@ -1,0 +1,52 @@
+<div class="container p-5">
+    <h1>Task List</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Type</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Start Date</th>
+          <th>Due Date</th>
+          <th>Assigned To</th>
+          <th>Subtask</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop through the tasks and display each task row -->
+        <tr *ngFor="let task of getPaginatedTasks()">
+          <td>{{ task.id }}</td>
+          <td>{{ task.taskType }}</td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.desc }}</td>
+          <td>{{ task.status }}</td>
+          <td>{{ task.startDate | date }}</td>
+          <td>{{ task.dueDate  | date}}</td>
+          <td>
+            <!-- Loop through the users assigned to the task and display their names -->
+            <ul>
+              <li *ngFor="let user of task.Users">{{ user.name }}</li>
+            </ul>
+           
+          </td>
+          <td>
+            <ul>
+                <li *ngFor="let task of task.subtasks">{{ task.title }}</li>
+              </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination
+    [(ngModel)]="currentPage"
+    [totalItems]="tasks.length"
+    [itemsPerPage]="pageSize"
+    [maxSize]="3"
+    [boundaryLinks]="true"
+    [rotate]="false"
+    (pageChanged)="onPageChange($event)"
+  ></pagination>
+
+  </div>

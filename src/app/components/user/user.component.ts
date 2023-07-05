@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
       const user = res.user
       localStorage.setItem('token', token);
       localStorage.setItem('name', user.name);
-      localStorage.setItem('id', user._id);
+      localStorage.setItem('id', user.id);
       this.router.navigate(['/task'])
 
     },

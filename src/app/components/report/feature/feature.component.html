@@ -1,0 +1,35 @@
+<div class="container mt-4">
+    <div *ngFor="let feature of features" class="card mt-3">
+      <div class="card-header text-capitalize">
+        <h2>{{ feature.title }}</h2>
+      </div>
+      <div class="card-body">
+        <p>{{ feature.description }}</p>
+        <p>Status: {{ feature.status }}</p>
+        <p>Start Date: {{ feature.startDate | date  }}</p>
+        <p>Due Date: {{ feature.dueDate  | date }}</p>
+        
+        <div *ngIf="feature.users && feature.users.length > 0">
+          <h3>Users:</h3>
+          <ul class="list-group">
+            <li *ngFor="let user of feature.users" class="list-group-item">
+              {{ user.name }} - {{ user.email }}
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="feature.tasks && feature.tasks.length > 0">
+          <h3>Tasks:</h3>
+         <ul class="list-group">
+            <li *ngFor="let task of feature.tasks" class="list-group-item">
+              <p class=" text-capitalize">{{ task.title }}</p>
+              <p>{{ task.desc }}</p>
+              <p>Status: {{ task.status }}</p>
+              <p>Start Date: {{ task.startDate | date  }}</p>
+              <p>Due Date: {{ task.dueDate  | date  }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  

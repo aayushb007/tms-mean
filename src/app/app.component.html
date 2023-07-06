@@ -8,6 +8,9 @@
       <li class="nav-item ">
         <a   *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/all-tasks']">All Tasks</a>
       </li>
+      <li class="nav-item ">
+        <a   *ngIf="authService.isAuthenticated()" class="nav-link" [routerLink]="['/all-tasks-bug']">All Bug</a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="reportDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Report</a>

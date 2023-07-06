@@ -30,5 +30,18 @@ export class TasksService {
 
 }
 
+searchTask(query:string){
+  // this.userId = localStorage.getItem('id');
+  // const user = this.userId !== null ? this.userId : '';
+   return this.http
+  .get(`${this.url}/search/?q=${query}`)
+  // .pipe(
+  //   map((response: any) => {
+  //     this.taskChanged.next(response.slice())
+  //     return response;
+  //   })
+  // );
+}
+
   
 }

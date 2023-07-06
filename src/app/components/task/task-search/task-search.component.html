@@ -1,7 +1,7 @@
-<form class=" input-group w-auto " [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="search" placeholder="Search">
+<form class=" input-group w-auto float-end" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="search" placeholder="Search Task">
   
     <span class="input-group-text border-0" id="search-addon">
-      <button class="btn btn-primary" >Search</button>
+      <button class="btn btn-dark" ><i class="fa fa-search" ></i></button>
     </span>
   </form>

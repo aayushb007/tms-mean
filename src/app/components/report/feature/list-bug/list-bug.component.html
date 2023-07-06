@@ -9,10 +9,11 @@
         <th>Due Date</th>
         <th>Assigned Users</th>
         <th>Tasks</th>
+        <th>Subtask</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of data">
+      <tr *ngFor="let item of features">
         <td>{{ item.id }}</td>
         <td>{{ item.title }}</td>
         <td>{{ item.description }}</td>
@@ -30,6 +31,13 @@
           <ul>
             <li *ngFor="let task of item.tasks">
               {{ task.title }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let stask of item.tasks.subtasks">
+              {{ stask.title }}
             </li>
           </ul>
         </td>

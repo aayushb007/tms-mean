@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Observable, Subject, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Feature } from './feature.model';
 import { Task } from './tasks.model';
@@ -12,13 +12,28 @@ export class ReportService {
   private apiDeTask = 'http://localhost:3000/dependent-tasks';
   private apiSTask = 'http://localhost:3000/sub-tasks';
   constructor(private http: HttpClient) { }
-
+  taskChanged = new Subject<Task[]>();
+  taskSelected = new EventEmitter<Task>();
   getFeature(): Observable<Feature> {
     return this.http.get<Feature>(`${this.apiFeat}/user/1`); 
   }
 
   getTask(): Observable<Task> {
-    return this.http.get<Task>(`${this.apiTask}`); 
+    return this.http.get<Task>(`${this.apiTask}`).pipe(
+      map((response: any) => {
+        this.taskChanged.next(response.slice())
+        return response;
+      })
+    );; 
+  }
+
+  getSearchTask(query:string):Observable<Task>{
+    return this.http.get<Task>(`${this.apiTask}/search/?query=${query}`).pipe(
+      map((response: any) => {
+        this.taskChanged.next(response.slice())
+        return response;
+      })
+    );
   }
 
   getBug(): Observable<Task> {
@@ -26,7 +41,7 @@ export class ReportService {
   }
 
   getFeatureBug():Observable<any>{
-    return this.http.get(`${this.apiFeat}/sub/bug`); 
+    return this.http.get(`${this.apiFeat}/bug/sub`); 
     
   }
 

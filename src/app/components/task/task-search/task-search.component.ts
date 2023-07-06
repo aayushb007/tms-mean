@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Task } from '../task.model';
 import { TaskService } from '../task.service';
 import { Router } from '@angular/router';
+import { ReportService } from '../../report/report.service';
 
 @Component({
   selector: 'app-task-search',
@@ -13,7 +14,7 @@ export class TaskSearchComponent implements OnInit {
   task!: Task[];
   searchForm!: FormGroup;
 
-  constructor(private taskService: TaskService, private router: Router) {
+  constructor(private taskService: ReportService, private router: Router) {
    
    }
   ngOnInit(): void {
@@ -29,7 +30,7 @@ export class TaskSearchComponent implements OnInit {
   onSubmit(){
     const query = this.searchForm.value['search'];
     console.log(query);
-    this.taskService.searchTask(query).subscribe(
+    this.taskService.getSearchTask(query).subscribe(
       res =>{
        console.log(res);
       //  this.task = res;

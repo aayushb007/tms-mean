@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ReportService } from '../../report.service';
+import { Feature, Task } from '../../feature.model';
 
 @Component({
   selector: 'app-list-bug',
@@ -6,19 +8,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-bug.component.css']
 })
 export class ListBugComponent {
-
+ features!: any[];
+  constructor(private taskService: ReportService) {}
+  ngOnInit() {
+   this.getTask();
+ }
 
   getTask() {
-    this.taskService.getTask().subscribe(
-      (task) => {
-      //  this.features = feature;
-        console.log(task); 
-        this.tasks = Array.isArray(task) ? task : [task];
-      console.log(task);
-      },
-      (error) => {
-        console.error('Error fetching task:', error);
-      }
-    );
+      this.taskService.getFeatureBug().subscribe(
+        (res)=>{
+       this.features= res;
+       console.log(res);
+       
+        },
+        (error)=>{
+          console.log(error);
+          
+        }
+      );
+      
+    
   }
 }

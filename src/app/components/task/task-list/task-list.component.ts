@@ -22,7 +22,6 @@ export class TaskListComponent implements OnInit {
      err =>{
       console.log(err
         );
-      
      })
      this.taskService.getTasks().subscribe(
       task =>{

@@ -13,7 +13,18 @@ export class AllTaskComponent implements OnInit {
 sortOrder: string = 'asc';
    constructor(private taskService: ReportService) {}
    ngOnInit() {
+    this.taskService.taskChanged.subscribe(
+      task =>{
+        console.log("latest",task);
+        this.tasks = Array.isArray(task) ? task : [task];
+      },
+      err =>{
+        console.log(err);
+        
+      }
+    )
     this.getTask();
+
   }
 
   getTask() {

@@ -8,7 +8,9 @@ import { ReportService } from '../report.service';
   styleUrls: ['./all-task.component.css']
 })
 export class AllTaskComponent implements OnInit {
-   tasks!:Task[]
+   tasks!:Task[];
+   sortField: string = '';
+sortOrder: string = 'asc';
    constructor(private taskService: ReportService) {}
    ngOnInit() {
     this.getTask();
@@ -41,4 +43,45 @@ export class AllTaskComponent implements OnInit {
      const endIndex = startIndex + this.pageSize;
      return this.tasks.slice(startIndex, endIndex);
    }
+
+
+
+
+
+   sort(field: string): void {
+    if (this.sortField === field) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortField = field;
+      this.sortOrder = 'asc';
+    }
+    this.tasks.sort(this.compareValues(field, this.sortOrder));
+  }
+  
+  compareValues(key: string, order: string = 'asc'): any {
+    return (a: any, b: any) => {
+      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        return 0;
+      }
+  
+      const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
+      const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
+  
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+      return (order === 'desc') ? (comparison * -1) : comparison;
+    };
+  }
+  
+  getSortIcon(field: string): string {
+    if (this.sortField === field) {
+      return this.sortOrder === 'asc' ? 'fa-sort-up' : 'fa-sort-down';
+    }
+    return 'fa-sort';
+  }
+  
 }

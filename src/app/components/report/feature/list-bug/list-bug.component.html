@@ -1,0 +1,39 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>Due Date</th>
+        <th>Assigned Users</th>
+        <th>Tasks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.status }}</td>
+        <td>{{ item.startDate | date }}</td>
+        <td>{{ item.dueDate | date }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let user of item.users">
+              {{ user.name }}
+            </li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let task of item.tasks">
+              {{ task.title }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

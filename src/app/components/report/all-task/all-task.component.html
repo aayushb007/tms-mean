@@ -3,6 +3,19 @@
     <table class="table table-striped">
       <thead>
         <tr>
+          <th (click)="sort('id')">ID <i class="fa fa-sort" [ngClass]="getSortIcon('id')"></i></th>
+          <th (click)="sort('taskType')">Type <i class="fa fa-sort" [ngClass]="getSortIcon('taskType')"></i></th>
+          <th (click)="sort('title')">Title <i class="fa fa-sort" [ngClass]="getSortIcon('title')"></i></th>
+          <th (click)="sort('desc')">Description <i class="fa fa-sort" [ngClass]="getSortIcon('desc')"></i></th>
+          <th (click)="sort('status')">Status <i class="fa fa-sort" [ngClass]="getSortIcon('status')"></i></th>
+          <th (click)="sort('startDate')">Start Date <i class="fa fa-sort" [ngClass]="getSortIcon('startDate')"></i></th>
+          <th (click)="sort('dueDate')">Due Date <i class="fa fa-sort" [ngClass]="getSortIcon('dueDate')"></i></th>
+          <th (click)="sort('assignedTo')">Assigned To <i class="fa fa-sort" [ngClass]="getSortIcon('assignedTo')"></i></th>
+          <th (click)="sort('subtasks.length')">Subtask <i class="fa fa-sort" [ngClass]="getSortIcon('subtasks.length')"></i></th>
+        </tr>
+      </thead>
+      <!-- <thead>
+        <tr>
           <th>ID</th>
           <th>Type</th>
           <th>Title</th>
@@ -11,9 +24,9 @@
           <th>Start Date</th>
           <th>Due Date</th>
           <th>Assigned To</th>
-          <th>Subtask</th> -->
+          <th>Subtask</th> 
         </tr>
-      </thead>
+      </thead> -->
       <tbody>
         <!-- Loop through the tasks and display each task row -->
         <tr *ngFor="let task of getPaginatedTasks()">

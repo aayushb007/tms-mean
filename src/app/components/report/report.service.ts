@@ -25,6 +25,11 @@ export class ReportService {
     return this.http.get<Task>(`${this.apiTask}/bug/1`); 
   }
 
+  getFeatureBug():Observable<any>{
+    return this.http.get(`${this.apiFeat}/sub/bug`); 
+    
+  }
+
   setTask(task:any){
     console.log(task);
     

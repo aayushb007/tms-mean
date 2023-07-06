@@ -14,7 +14,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
   ngOnInit(): void {
     if (localStorage.getItem('token')) {
-      this.router.navigate(['/task'])
+      this.router.navigate(['/all-tasks'])
 
     }
     this.initForm()
@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
       localStorage.setItem('token', token);
       localStorage.setItem('name', user.name);
       localStorage.setItem('id', user.id);
-      this.router.navigate(['/task'])
+      this.router.navigate(['/all-tasks'])
 
     },
       err => {

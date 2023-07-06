@@ -1,4 +1,8 @@
-<table class="table">
+<div class="container p-5 bg-light">
+
+  <h1>Feature with Tasks and Sub Tasks </h1>
+
+<table class="table mt-5">
     <thead>
       <tr>
         <th>ID</th>
@@ -36,12 +40,16 @@
         </td>
         <td>
           <ul>
-            <li *ngFor="let stask of item.tasks.subtasks">
-              {{ stask.title }}
+            <li *ngFor="let task of item.tasks" >
+              <ul >
+                <li *ngFor="let subtask of task.subtasks">
+                  {{ subtask.title }}
+                </li>
+              </ul>
             </li>
           </ul>
         </td>
       </tr>
     </tbody>
   </table>
-  
+  </div>

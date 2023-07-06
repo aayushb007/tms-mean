@@ -18,7 +18,7 @@ export class ListBugComponent {
       this.taskService.getFeatureBug().subscribe(
         (res)=>{
        this.features= res;
-       console.log(res);
+       
        
         },
         (error)=>{

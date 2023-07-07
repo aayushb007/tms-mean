@@ -30,17 +30,43 @@ export class TasksService {
 
 }
 
+
+getTaskDetail(id:number):Observable<Task>{
+  console.log("Hello this is Get User",id);
+  console.log('id',id);
+  
+  return this.http.get<Task>(`${this.url}/${id}`).pipe(
+      map((response: any) => {
+        console.log(response);
+        return response;
+      })
+    );
+ }
+ editTask(id: number, newTask: Task){
+  return this.http
+  .put(`${this.url}/${id}`, newTask);
+  // .pipe(
+  //   map((response: any) => {
+  //     this.taskChanged.next(response)
+  //     return response;
+  //   })
+  // );
+ 
+
+ 
+}
+
 searchTask(query:string){
   // this.userId = localStorage.getItem('id');
   // const user = this.userId !== null ? this.userId : '';
    return this.http
   .get(`${this.url}/search/?q=${query}`)
-  // .pipe(
-  //   map((response: any) => {
-  //     this.taskChanged.next(response.slice())
-  //     return response;
-  //   })
-  // );
+  .pipe(
+    map((response: any) => {
+      this.taskChanged.next(response.slice())
+      return response;
+    })
+  );
 }
 
   

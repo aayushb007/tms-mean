@@ -88,6 +88,25 @@ sortOrder: string = 'asc';
     };
   }
   
+  getButtonClass(status:string): any{
+    // if(!this.tasks){
+    //   return 'btn btn-outline'
+    // }
+
+      if (status === 'Pending') {
+        return 'btn btn-outline-dark';
+      } else if (status === 'Inprogress') {
+        return 'btn btn-outline-secondary';
+      } else if (status === 'Completed') {
+        return 'btn btn-outline-primary';
+      } else if (status === 'Testing') {
+        return 'btn btn-outline-danger';
+      } else {
+        return 'btn';
+      }
+    
+    
+  }
   getSortIcon(field: string): string {
     if (this.sortField === field) {
       return this.sortOrder === 'asc' ? 'fa-sort-up' : 'fa-sort-down';

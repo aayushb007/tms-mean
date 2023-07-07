@@ -17,26 +17,13 @@
           <th (click)="sort('subtasks.length')">Subtask <i class="fa fa-sort" [ngClass]="getSortIcon('subtasks.length')"></i></th>
         </tr>
       </thead>
-      <!-- <thead>
-        <tr>
-          <th>ID</th>
-          <th>Type</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Start Date</th>
-          <th>Due Date</th>
-          <th>Assigned To</th>
-          <th>Subtask</th> 
-        </tr>
-      </thead> -->
       <tbody>
         <tr *ngFor="let task of getPaginatedTasks()">
           <td>{{ task.id }}</td>
           <td>{{ task.taskType }}</td>
           <td>{{ task.title }}</td>
           <td>{{ task.desc }}</td>
-          <td>{{ task.status }}</td>
+          <td><a [class]='getButtonClass(task.status)'>{{ task.status }}</a></td>
           <td>{{ task.startDate | date }}</td>
           <td>{{ task.dueDate  | date}}</td>
           <td>

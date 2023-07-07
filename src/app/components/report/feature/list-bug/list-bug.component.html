@@ -21,7 +21,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.title }}</td>
         <td>{{ item.description }}</td>
-        <td>{{ item.status }}</td>
+        <td><p [class]="getButtonClass(item.status)">{{ item.status }}</p></td>
         <td>{{ item.startDate | date }}</td>
         <td>{{ item.dueDate | date }}</td>
         <td>

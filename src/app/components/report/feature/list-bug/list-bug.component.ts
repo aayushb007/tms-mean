@@ -13,6 +13,25 @@ export class ListBugComponent {
   ngOnInit() {
    this.getTask();
  }
+ getButtonClass(status:string): any{
+  // if(!this.tasks){
+  //   return 'btn btn-outline'
+  // }
+
+    if (status === 'Pending') {
+      return 'btn btn-outline-dark';
+    } else if (status === 'Inprogress') {
+      return 'btn btn-outline-secondary';
+    } else if (status === 'Completed') {
+      return 'btn btn-outline-primary';
+    } else if (status === 'Testing') {
+      return 'btn btn-outline-danger';
+    } else {
+      return 'btn';
+    }
+  
+  
+}
 
   getTask() {
       this.taskService.getFeatureBug().subscribe(

@@ -8,19 +8,19 @@ import { ReportService } from '../report.service';
   styleUrls: ['./all-task.component.css']
 })
 export class AllTaskComponent implements OnInit {
-   tasks!:Task[];
-   sortField: string = '';
-sortOrder: string = 'asc';
-   constructor(private taskService: ReportService) {}
-   ngOnInit() {
+  tasks!: Task[];
+  sortField: string = '';
+  sortOrder: string = 'asc';
+  constructor(private taskService: ReportService) { }
+  ngOnInit() {
     this.taskService.taskChanged.subscribe(
-      task =>{
-        console.log("latest",task);
+      task => {
+        console.log("latest", task);
         this.tasks = Array.isArray(task) ? task : [task];
       },
-      err =>{
+      err => {
         console.log(err);
-        
+
       }
     )
     this.getTask();
@@ -30,36 +30,36 @@ sortOrder: string = 'asc';
   getTask() {
     this.taskService.getTask().subscribe(
       (task) => {
-      //  this.features = feature;
-        console.log(task); 
+        //  this.features = feature;
+        console.log(task);
         this.tasks = Array.isArray(task) ? task : [task];
-      console.log(task);
+        console.log(task);
       },
       (error) => {
         console.error('Error fetching task:', error);
       }
     );
   }
-   // Pagination properties
-   pageSize = 3;
-   currentPage = 1;
- 
-   // Function to change the current page
-   onPageChange(event: any): void {
+  // Pagination properties
+  pageSize = 3;
+  currentPage = 1;
+
+  // Function to change the current page
+  onPageChange(event: any): void {
     this.currentPage = event.page;
   }
-   // Function to get the paginated tasks
-   getPaginatedTasks(): Task[] {
-     const startIndex = (this.currentPage - 1) * this.pageSize;
-     const endIndex = startIndex + this.pageSize;
-     return this.tasks.slice(startIndex, endIndex);
-   }
+  // Function to get the paginated tasks
+  getPaginatedTasks(): Task[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.tasks.slice(startIndex, endIndex);
+  }
 
 
 
 
 
-   sort(field: string): void {
+  sort(field: string): void {
     if (this.sortField === field) {
       this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
     } else {
@@ -68,16 +68,16 @@ sortOrder: string = 'asc';
     }
     this.tasks.sort(this.compareValues(field, this.sortOrder));
   }
-  
+
   compareValues(key: string, order: string = 'asc'): any {
     return (a: any, b: any) => {
       if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
         return 0;
       }
-  
+
       const varA = (typeof a[key] === 'string') ? a[key].toUpperCase() : a[key];
       const varB = (typeof b[key] === 'string') ? b[key].toUpperCase() : b[key];
-  
+
       let comparison = 0;
       if (varA > varB) {
         comparison = 1;
@@ -87,31 +87,24 @@ sortOrder: string = 'asc';
       return (order === 'desc') ? (comparison * -1) : comparison;
     };
   }
-  
-  getButtonClass(status:string): any{
-    // if(!this.tasks){
-    //   return 'btn btn-outline'
-    // }
 
-      if (status === 'Pending') {
-        return 'btn btn-outline-dark';
-      } else if (status === 'Inprogress') {
-        return 'btn btn-outline-secondary';
-      } else if (status === 'Completed') {
-        return 'btn btn-outline-primary';
-      } else if (status === 'Testing') {
-        return 'btn btn-outline-danger';
-      } else {
-        return 'btn';
-      }
-    
-    
-  }
+  getButtonClass(status: string): any {
+    if (status === 'Pending') {
+      return 'btn btn-outline-dark';
+    } else if (status === 'Inprogress') {
+      return 'btn btn-outline-secondary';
+    } else if (status === 'Completed') {
+      return 'btn btn-outline-primary';
+    } else if (status === 'Testing') {
+      return 'btn btn-outline-danger';
+    } else {
+      return 'btn';
+    }
+}
   getSortIcon(field: string): string {
     if (this.sortField === field) {
       return this.sortOrder === 'asc' ? 'fa-sort-up' : 'fa-sort-down';
     }
     return 'fa-sort';
   }
-  
 }

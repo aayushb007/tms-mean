@@ -15,7 +15,9 @@ export class ReportService {
   taskChanged = new Subject<Task[]>();
   taskSelected = new EventEmitter<Task>();
   getFeature(): Observable<Feature> {
-    return this.http.get<Feature>(`${this.apiFeat}/user/1`); 
+     let userId = localStorage.getItem('id');
+    console.log(userId);
+    return this.http.get<Feature>(`${this.apiFeat}/user/${userId}`); 
   }
 
   getTask(): Observable<Task> {

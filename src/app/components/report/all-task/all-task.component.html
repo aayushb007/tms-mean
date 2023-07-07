@@ -27,11 +27,9 @@
           <td>{{ task.startDate | date }}</td>
           <td>{{ task.dueDate  | date}}</td>
           <td>
-           
             <ul>
               <li *ngFor="let user of task.Users">{{ user.name }}</li>
             </ul>
-           
           </td>
           <td>
             <ul>

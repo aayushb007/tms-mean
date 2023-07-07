@@ -1,5 +1,6 @@
-<div class="container p-5">
-    <h1>Task List</h1>
+<div class="container p-5 bg-light">
+    <h1>Bug List</h1>
+    
     <table class="table table-striped">
       <thead>
         <tr>
@@ -11,11 +12,10 @@
           <th>Start Date</th>
           <th>Due Date</th>
           <th>Assigned To</th>
-          <th>Subtask</th> -->
+          <th>Subtask</th>
         </tr>
       </thead>
       <tbody>
-        <!-- Loop through the tasks and display each task row -->
         <tr *ngFor="let task of tasks">
           <td>{{ task.id }}</td>
           <td>{{ task.taskType }}</td>
@@ -25,7 +25,7 @@
           <td>{{ task.startDate | date }}</td>
           <td>{{ task.dueDate  | date}}</td>
           <td>
-            <!-- Loop through the users assigned to the task and display their names -->
+           
             <ul>
               <li *ngFor="let user of task.Users">{{ user.name }}</li>
             </ul>

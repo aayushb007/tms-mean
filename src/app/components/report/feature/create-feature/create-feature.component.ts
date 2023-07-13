@@ -10,11 +10,11 @@ import { UserService } from 'src/app/components/user.service';
   styleUrls: ['./create-feature.component.css']
 })
 export class CreateFeatureComponent implements OnInit {
-  feature!:Feature[];
-  users!:any;
+  feature!: Feature[];
+  users!: any;
   featureForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private featService:ReportService,private userService:UserService) { }
+  constructor(private formBuilder: FormBuilder, private featService: ReportService, private userService: UserService) { }
 
   ngOnInit() {
     this.getUser();
@@ -29,23 +29,23 @@ export class CreateFeatureComponent implements OnInit {
   }
 
 
-   getUser(){
+  getUser() {
     this.userService.getUsers().subscribe(
       (user) => {
         //  this.features  = feature;
-          console.log(user); 
-          this.users = user 
-          //Array.isArray(feature) ? feature : [feature];
+        console.log(user);
+        this.users = user
+        //Array.isArray(feature) ? feature : [feature];
         console.log(this.users);
-        },
-        (error) => {
-          console.error('Error fetching feature:', error);
-        }
+      },
+      (error) => {
+        console.error('Error fetching feature:', error);
+      }
     )
-   }
+  }
   onSubmit() {
     const newFeat = this.featureForm.value
-   
+
     this.featService.addFeature(newFeat).subscribe(
       response => {
         console.log('Data inserted successfully!', response);

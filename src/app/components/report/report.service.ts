@@ -7,7 +7,7 @@ import { Task } from './tasks.model';
   providedIn: 'root'
 })
 export class ReportService {
-  private apiFeat = 'http://localhost:3000/features'; 
+  private apiFeat = 'http://localhost:3000/features';
   private apiTask = 'http://localhost:3000/tasks';
   private apiDeTask = 'http://localhost:3000/dependent-tasks';
   private apiSTask = 'http://localhost:3000/sub-tasks';
@@ -15,9 +15,9 @@ export class ReportService {
   taskChanged = new Subject<Task[]>();
   taskSelected = new EventEmitter<Task>();
   getFeature(): Observable<Feature> {
-     let userId = localStorage.getItem('id');
+    let userId = localStorage.getItem('id');
     console.log(userId);
-    return this.http.get<Feature>(`${this.apiFeat}/user/${userId}`); 
+    return this.http.get<Feature>(`${this.apiFeat}/user/${userId}`);
   }
 
   getTask(): Observable<Task> {
@@ -26,10 +26,10 @@ export class ReportService {
         this.taskChanged.next(response.slice())
         return response;
       })
-    );; 
+    );;
   }
 
-  getSearchTask(query:string):Observable<Task>{
+  getSearchTask(query: string): Observable<Task> {
     return this.http.get<Task>(`${this.apiTask}/search/?query=${query}`).pipe(
       map((response: any) => {
         this.taskChanged.next(response.slice())
@@ -39,37 +39,37 @@ export class ReportService {
   }
 
   getBug(): Observable<Task> {
-    return this.http.get<Task>(`${this.apiTask}/bug/1`); 
+    return this.http.get<Task>(`${this.apiTask}/bug/1`);
   }
 
-  getFeatureBug():Observable<any>{
-    return this.http.get(`${this.apiFeat}/bug/sub`); 
-    
+  getFeatureBug(): Observable<any> {
+    return this.http.get(`${this.apiFeat}/bug/sub`);
+
   }
 
-  setTask(task:any){
+  setTask(task: any) {
     console.log(task);
-    
+
     return this.http
-    .post(`${this.apiTask}`, task);
-    
+      .post(`${this.apiTask}`, task);
+
   }
 
-  addDependentTask(task:any){
+  addDependentTask(task: any) {
     console.log(task);
-    return this.http.post(`${this.apiDeTask}`,task);
-    
+    return this.http.post(`${this.apiDeTask}`, task);
+
   }
 
-  addSubTask(task:any){
+  addSubTask(task: any) {
     console.log(task);
-    return this.http.post(`${this.apiSTask}`,task);
-    
+    return this.http.post(`${this.apiSTask}`, task);
+
   }
 
-  addFeature(feature:Feature){
+  addFeature(feature: Feature) {
     console.log(feature);
     return this.http
-    .post(`${this.apiFeat}`, feature); 
+      .post(`${this.apiFeat}`, feature);
   }
 }

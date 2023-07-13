@@ -11,11 +11,11 @@ import { TasksService } from 'src/app/components/task/tasks.service';
   styleUrls: ['./create-dependent-task.component.css']
 })
 export class CreateDependentTaskComponent {
-  tasks!:Task[];
-  users!:any;
+  tasks!: Task[];
+  users!: any;
   featureForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private featService:ReportService,private userService:UserService,private taskService:TasksService) { }
+  constructor(private formBuilder: FormBuilder, private featService: ReportService, private userService: UserService, private taskService: TasksService) { }
 
   ngOnInit() {
     this.getUser();
@@ -32,33 +32,32 @@ export class CreateDependentTaskComponent {
     });
   }
 
-   getTask(){
-     this.taskService.getTasks().subscribe(
-      (task)=>{
+  getTask() {
+    this.taskService.getTasks().subscribe(
+      (task) => {
         console.log(task);
         this.tasks = task
-        
-    },(error)=>{
-      console.error('Error fetching Task:', error);
-      
-    }
-     )
-   }
-   getUser(){
+
+      }, (error) => {
+        console.error('Error fetching Task:', error);
+
+      }
+    )
+  }
+  getUser() {
     this.userService.getUsers().subscribe(
       (user) => {
-        //  this.features  = feature;
-          console.log(user); 
-          this.users = user 
-          //Array.isArray(feature) ? feature : [feature];
+        
+        console.log(user);
+        this.users = user
         console.log(this.users);
-        },
-        (error) => {
-          console.error('Error fetching feature:', error);
-        }
+      },
+      (error) => {
+        console.error('Error fetching feature:', error);
+      }
     )
-   }
-   onSubmit() {
+  }
+  onSubmit() {
     const newTask = this.featureForm.value
     console.log(newTask);
     this.featService.addDependentTask(newTask).subscribe(
@@ -72,6 +71,6 @@ export class CreateDependentTaskComponent {
       }
     );
     // Process the form data here
-   
+
   }
 }

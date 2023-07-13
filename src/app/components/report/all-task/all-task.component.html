@@ -1,60 +1,55 @@
 <div class="container p-5 bg-light">
 
-    <h1>Task List</h1>
+  <h1>Task List</h1>
 
-  
-    <form class="input-group w-auto float-end" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-      <input type="text" formControlName="search" placeholder="Search Task">
-      <span class="input-group-text border-0" id="search-addon">
-        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
-      </span>
-    </form>
-    
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th (click)="sort('id')">ID <i class="fa fa-sort" [ngClass]="getSortIcon('id')"></i></th>
-          <th (click)="sort('taskType')">Type <i class="fa fa-sort" [ngClass]="getSortIcon('taskType')"></i></th>
-          <th (click)="sort('title')">Title <i class="fa fa-sort" [ngClass]="getSortIcon('title')"></i></th>
-          <th (click)="sort('desc')">Description <i class="fa fa-sort" [ngClass]="getSortIcon('desc')"></i></th>
-          <th (click)="sort('status')">Status <i class="fa fa-sort" [ngClass]="getSortIcon('status')"></i></th>
-          <th (click)="sort('startDate')">Start Date <i class="fa fa-sort" [ngClass]="getSortIcon('startDate')"></i></th>
-          <th (click)="sort('dueDate')">Due Date <i class="fa fa-sort" [ngClass]="getSortIcon('dueDate')"></i></th>
-          <th (click)="sort('assignedTo')">Assigned To <i class="fa fa-sort" [ngClass]="getSortIcon('assignedTo')"></i></th>
-          <th (click)="sort('subtasks.length')">Subtask <i class="fa fa-sort" [ngClass]="getSortIcon('subtasks.length')"></i></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let task of getPaginatedTasks()">
-          <td>{{ task.id }}</td>
-          <td>{{ task.taskType }}</td>
-          <td>{{ task.title }}</td>
-          <td>{{ task.desc }}</td>
-          <td><a [class]='getButtonClass(task.status)'>{{ task.status }}</a></td>
-          <td>{{ task.startDate | date }}</td>
-          <td>{{ task.dueDate  | date}}</td>
-          <td>
-            <ul>
-              <li *ngFor="let user of task.Users">{{ user.name }}</li>
-            </ul>
-          </td>
-          <td>
-            <ul>
-                <li *ngFor="let task of task.subtasks">{{ task.title }}</li>
-              </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <pagination
-    [(ngModel)]="currentPage"
-    [totalItems]="tasks.length"
-    [itemsPerPage]="pageSize"
-    [maxSize]="3"
-    [boundaryLinks]="true"
-    [rotate]="false"
-    (pageChanged)="onPageChange($event)"
-  ></pagination>
+  <form class="input-group w-auto float-end" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <input type="text" formControlName="search" placeholder="Search Task">
+    <span class="input-group-text border-0" id="search-addon">
+      <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+    </span>
+  </form>
 
-  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th (click)="sort('id')">ID <i class="fa fa-sort" [ngClass]="getSortIcon('id')"></i></th>
+        <th (click)="sort('taskType')">Type <i class="fa fa-sort" [ngClass]="getSortIcon('taskType')"></i></th>
+        <th (click)="sort('title')">Title <i class="fa fa-sort" [ngClass]="getSortIcon('title')"></i></th>
+        <th (click)="sort('desc')">Description <i class="fa fa-sort" [ngClass]="getSortIcon('desc')"></i></th>
+        <th (click)="sort('status')">Status <i class="fa fa-sort" [ngClass]="getSortIcon('status')"></i></th>
+        <th (click)="sort('startDate')">Start Date <i class="fa fa-sort" [ngClass]="getSortIcon('startDate')"></i></th>
+        <th (click)="sort('dueDate')">Due Date <i class="fa fa-sort" [ngClass]="getSortIcon('dueDate')"></i></th>
+        <th (click)="sort('assignedTo')">Assigned To <i class="fa fa-sort" [ngClass]="getSortIcon('assignedTo')"></i>
+        </th>
+        <th (click)="sort('subtasks.length')">Subtask <i class="fa fa-sort"
+            [ngClass]="getSortIcon('subtasks.length')"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of getPaginatedTasks()">
+        <td>{{ task.id }}</td>
+        <td>{{ task.taskType }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.desc }}</td>
+        <td><a [class]='getButtonClass(task.status)'>{{ task.status }}</a></td>
+        <td>{{ task.startDate | date }}</td>
+        <td>{{ task.dueDate | date}}</td>
+        <td>
+          <ul>
+            <li *ngFor="let user of task.Users">{{ user.name }}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let task of task.subtasks">{{ task.title }}</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination [(ngModel)]="currentPage" [totalItems]="tasks.length" [itemsPerPage]="pageSize" [maxSize]="3"
+    [boundaryLinks]="true" [rotate]="false" (pageChanged)="onPageChange($event)"></pagination>
+
+</div>

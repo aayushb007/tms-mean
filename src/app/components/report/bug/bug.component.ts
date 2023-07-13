@@ -7,24 +7,23 @@ import { Task } from '../tasks.model';
   templateUrl: './bug.component.html',
   styleUrls: ['./bug.component.css']
 })
-export class BugComponent  implements OnInit {
-  tasks!:Task[]
-  constructor(private taskService: ReportService) {}
+export class BugComponent implements OnInit {
+  tasks!: Task[]
+  constructor(private taskService: ReportService) { }
   ngOnInit() {
-   this.getBug();
- }
-
- getBug() {
-   this.taskService.getBug().subscribe(
-     (task) => {
-     //  this.features = feature;
-       console.log(task); 
-       this.tasks = Array.isArray(task) ? task : [task];
-     console.log(task);
-     },
-     (error) => {
-       console.error('Error fetching task:', error);
-     }
-   );
- }
+    this.getBug();
+  }
+  getBug() {
+    this.taskService.getBug().subscribe(
+      (task) => {
+        //  this.features = feature;
+        console.log(task);
+        this.tasks = Array.isArray(task) ? task : [task];
+        console.log(task);
+      },
+      (error) => {
+        console.error('Error fetching task:', error);
+      }
+    );
+  }
 }

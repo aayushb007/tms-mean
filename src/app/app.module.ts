@@ -26,6 +26,7 @@ import { CreateTaskComponent } from './components/report/feature/create-task/cre
 import { CreateSubTaskComponent } from './components/report/feature/create-sub-task/create-sub-task.component';
 import { CreateDependentTaskComponent } from './components/report/feature/create-dependent-task/create-dependent-task.component';
 import { ListBugComponent } from './components/report/feature/list-bug/list-bug.component';
+import { ScrollBackgroundDirective } from './scroll-background.directive';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ListBugComponent } from './components/report/feature/list-bug/list-bug.
     CreateSubTaskComponent,
     CreateDependentTaskComponent,
     ListBugComponent,
+    ScrollBackgroundDirective,
    
   ],
   imports: [

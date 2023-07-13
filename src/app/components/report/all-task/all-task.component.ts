@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../tasks.model';
 import { ReportService } from '../report.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-all-task',
@@ -9,9 +10,15 @@ import { ReportService } from '../report.service';
 })
 export class AllTaskComponent implements OnInit {
   tasks!: Task[];
+  searchForm: FormGroup;
+  filteredTasks!: Task[];
   sortField: string = '';
   sortOrder: string = 'asc';
-  constructor(private taskService: ReportService) { }
+  constructor(private taskService: ReportService,private formBuilder:FormBuilder) {
+    this.searchForm = this.formBuilder.group({
+      search:['']
+    })
+   }
   ngOnInit() {
     this.taskService.taskChanged.subscribe(
       task => {
@@ -25,6 +32,11 @@ export class AllTaskComponent implements OnInit {
     )
     this.getTask();
 
+  }
+  onSubmit(): void {
+    const searchTerm = this.searchForm.get('search')?.value;
+    // Perform your search logic using the searchTerm
+    this.onSearch(searchTerm);
   }
 
   getTask() {
@@ -49,11 +61,37 @@ export class AllTaskComponent implements OnInit {
     this.currentPage = event.page;
   }
   // Function to get the paginated tasks
-  getPaginatedTasks(): Task[] {
+  getPaginatedTasks(): Task[]  {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
+    // return this.filteredTasks.slice(startIndex, endIndex);
+    if(!this.filteredTasks){
     return this.tasks.slice(startIndex, endIndex);
+    }
+    else {
+    return this.filteredTasks.slice(startIndex, endIndex);
+
+    }
   }
+
+  onSearch(term: string): void {
+    if (term.trim() === '') {
+      // If the search term is empty, reset the filtered tasks to all tasks
+      this.filteredTasks = [...this.tasks];
+    } else {
+      // Filter tasks based on the search term
+      this.filteredTasks = this.tasks.filter(task =>
+        task.title.toLowerCase().includes(term.toLowerCase()) ||
+        task.desc.toLowerCase().includes(term.toLowerCase()) ||
+        task.Users.some(user => user.name.toLowerCase().includes(term.toLowerCase()))
+      );
+    }
+    console.log(this.filteredTasks);
+    
+    // Reset the current page to 1 when performing a new search
+    this.currentPage = 1;
+  }
+  
 
 
 

@@ -2,7 +2,15 @@
 
     <h1>Task List</h1>
 
-    <app-task-search></app-task-search>
+  
+    <form class="input-group w-auto float-end" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="search" placeholder="Search Task">
+      <span class="input-group-text border-0" id="search-addon">
+        <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+      </span>
+    </form>
+    
+
     <table class="table table-striped">
       <thead>
         <tr>

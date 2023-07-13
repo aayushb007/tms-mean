@@ -64,4 +64,13 @@ export class TaskDetailsComponent implements OnInit {
     this.router.navigate(['/task']);
   }
 
+  displayStyle = "none";
+  
+  openPopup() {
+    this.displayStyle = "block";
+  }
+  closePopup() {
+    this.displayStyle = "none";
+  }
+
 }

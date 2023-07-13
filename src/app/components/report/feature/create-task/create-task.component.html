@@ -10,7 +10,7 @@
         <option value="Bug">Bug</option>
        
       </select>
-      <!-- <input type="text" id="taskType" class="form-control" formControlName="taskType" required> -->
+      
     </div>
   
     <div class="form-group">
@@ -46,10 +46,10 @@
     </div>
   
     <div class="form-group">
-      <label for="feature_id">Feature ID:</label>
+      <label for="feature_id">Feature:</label>
       <select id="feature_id" class="form-control" formControlName="feature_id" required>
-        <option value="">Select Feature ID</option>
-        <option *ngFor="let feature of features" [value]="feature.id">{{ feature.title }}</option>
+        <option value="">Select Feature </option>
+        <option *ngFor="let feature of features" [value]="feature.id">{{feature.id}}-{{ feature.title }}</option>
       </select>
     </div>
   </div>
